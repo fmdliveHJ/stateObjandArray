@@ -6,35 +6,45 @@ const ExpenseForm = (props) => {
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
 	const [enteredDate, setEnteredDate] = useState('');
-
-	// const [first, setFirst] = useState({
-	// 	eTitle: '',
-	// 	eAmount: '',
-	// 	eDate: '',
+	// const [userInput, setUserInput] = useState({
+	//   enteredTitle: '',
+	//   enteredAmount: '',
+	//   enteredDate: '',
 	// });
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
+		// setUserInput({
+		//   ...userInput,
+		//   enteredTitle: event.target.value,
+		// });
+		// setUserInput((prevState) => {
+		//   return { ...prevState, enteredTitle: event.target.value };
+		// });
 	};
+
 	const amountChangeHandler = (event) => {
 		setEnteredAmount(event.target.value);
 	};
 
 	const dateChangeHandler = (event) => {
 		setEnteredDate(event.target.value);
+		// setUserInput({
+		//   ...userInput,
+		//   enteredDate: event.target.value,
+		// });
 	};
 
-	const submitHandler = (e) => {
-		e.preventDefault();
+	const submitHandler = (event) => {
+		event.preventDefault();
 
 		const expenseData = {
 			title: enteredTitle,
-			amout: enteredAmount,
+			amount: enteredAmount,
 			date: new Date(enteredDate),
 		};
 
-		// console.log(expenseData);
-		props.saveData(expenseData);
+		props.onSaveExpenseData(expenseData);
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
@@ -80,7 +90,6 @@ const ExpenseForm = (props) => {
 };
 
 export default ExpenseForm;
-
 /**
  * 입력된 것을 없애는 방법
  * > 양방향 바인딩 구현
